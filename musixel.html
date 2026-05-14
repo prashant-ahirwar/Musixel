@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Musixel📻</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="frame" id="frame">
+    <header>
+        <h1>Musixel📻</h1>
+      <div class="header-help">
+        <strong>Space</strong>: Play/Pause | <strong>Left/Right</strong>: Seek | <strong>Up/Down</strong>: Volume
+      </div>
+    </header>
+
+    <main>
+      <section class="screen" aria-label="Player">
+        <canvas id="viz" aria-label="Audio visualizer"></canvas>
+
+        <div class="meta">
+          <p class="track-title" id="title">Drop a track to begin...</p>
+          <div class="time"><span id="tCur">0:00</span> / <span id="tDur">0:00</span></div>
+        </div>
+
+        <div class="status" id="status" role="status" aria-live="polite">Ready. Add tracks to start playback.</div>
+
+        <div class="controls" role="group" aria-label="Playback controls">
+          <div class="btns">
+            <button class="pixel" id="prev" title="Previous" aria-label="Previous" disabled>
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M5 5h3v14H5zM21 19L9 12l12-7z"></path></svg>
+              </span>
+            </button>
+            <button class="pixel" id="play" title="Play/Pause" aria-label="Play or Pause" disabled>
+              <span class="icon" aria-hidden="true" id="playIcon">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+              </span>
+            </button>
+            <button class="pixel" id="next" title="Next" aria-label="Next" disabled>
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M16 5h3v14h-3zM3 19l12-7L3 5z"></path></svg>
+              </span>
+            </button>
+          </div>
+
+          <div class="sliders">
+            <div class="range">
+              <label for="seek">Seek</label>
+              <input type="range" id="seek" min="0" max="1000" value="0" step="1" aria-label="Seek" disabled />
+              <span class="range-value" id="seekVal">0%</span>
+            </div>
+
+            <div class="range">
+              <label for="vol">Volume</label>
+              <input type="range" id="vol" min="0" max="1" step="0.01" value="0.85" aria-label="Volume" />
+              <span class="range-value" id="volVal">85%</span>
+            </div>
+          </div>
+        </div>
+
+        <audio id="audio" preload="metadata" crossorigin="anonymous"></audio>
+      </section>
+
+      <aside class="sidebar" aria-label="Playlist and upload">
+        <div class="uploader" id="drop">
+          <div class="drop-title">Drag and drop audio here</div>
+          <label class="pixel" for="file">Upload</label>
+          <div class="drop-hint">MP3, WAV, OGG, AAC</div>
+          <input id="file" type="file" accept="audio/*" multiple />
+        </div>
+
+        <div class="playlist">
+          <h3>Playlist</h3>
+          <div class="tracks" id="tracks" role="listbox" aria-label="Playlist">
+            <p class="empty">No tracks yet. Drop files to build your playlist.</p>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <span>Listening to Musixel</span>
+      <span><span class="kbd">Esc</span> stop</span>
+    </footer>
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>
